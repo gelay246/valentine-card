@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Will You Be My Valentine? ❤️</title>
+  <title>HAPPY VALENTINE's! ❤️</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -61,11 +62,12 @@
       cursor: pointer;
       margin: 0.4rem;
       transition: all 0.25s ease;
-      position: relative;
-      overflow: hidden;
     }
 
-    button:hover { background: #a4133c; transform: scale(1.05); }
+    button:hover {
+      background: #a4133c;
+      transform: scale(1.05);
+    }
 
     .flowers {
       width: 100%;
@@ -79,11 +81,21 @@
       margin-bottom: 1rem;
     }
 
+    /* Floating hearts */
     .heart {
       position: fixed;
       color: rgba(255,255,255,0.7);
       font-size: 1.2rem;
       animation: floatUp 6s linear infinite;
+      z-index: 0;
+    }
+
+    /* Floating flowers */
+    .flower {
+      position: fixed;
+      font-size: 1.4rem;
+      opacity: 0.6;
+      animation: floatUp 10s linear infinite;
       z-index: 0;
     }
 
@@ -109,7 +121,6 @@
       to { transform: scale(1.2) translate(var(--x), var(--y)); opacity: 0; }
     }
 
-    /* Mobile tweaks */
     @media (max-width: 480px) {
       h1 { font-size: 1.9rem; }
       h2 { font-size: 1.6rem; }
@@ -117,19 +128,20 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Background Music -->
   <audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    <source src="our.music.mp3" type="audio/mpeg">
   </audio>
 
   <!-- PAGE 1 -->
   <div class="page active" id="page1">
     <div class="card">
       <img class="flowers" src="us.jpg.jpg" alt="flowers">
-      <h1>Happy Valentine’s Day ❤️</h1>
-      <p>I made something special for you.</p>
+      <h1>Happy Valentine’s Day, Babi!! ❤️</h1>
+      <p>I made something special for you, abaw special.</p>
       <button onclick="goToPage(2)">Read my message 💌</button>
     </div>
   </div>
@@ -137,8 +149,8 @@
   <!-- PAGE 2 -->
   <div class="page" id="page2">
     <div class="card">
-      <h2>Will you be my Valentine? 💕</h2>
-      <p>This message comes straight from my heart.</p>
+      <h2>Iloveyouu mwamwa 💕</h2>
+      <p>I have a letter, please read hehe.</p>
       <button id="yesBtn">Yes 💖</button>
       <button id="noBtn">No 🙈</button>
     </div>
@@ -147,10 +159,9 @@
   <!-- PAGE 3 -->
   <div class="page" id="page3">
     <div class="card">
-      <img class="photo" src="YOUR_PHOTO_HERE.jpg" alt="memory">
+      <img class="photo" src="us1.jpg.jpg" alt="memory">
       <h2>I Choose You ❤️</h2>
       <p style="color:#c9184a; font-size:1.05rem;">
-        <!-- EDIT YOUR MESSAGE HERE -->
         From the moment you entered my life, everything felt warmer and brighter.
         Will you be my Valentine today and always? 💍💕
       </p>
@@ -165,7 +176,7 @@
 
     // YES button heart explosion
     const yesBtn = document.getElementById('yesBtn');
-    yesBtn.addEventListener('click', (e) => {
+    yesBtn.addEventListener('click', () => {
       const rect = yesBtn.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
@@ -196,7 +207,7 @@
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Floating hearts background
+    // Floating hearts
     for (let i = 0; i < 30; i++) {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -204,6 +215,19 @@
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
       document.body.appendChild(heart);
+    }
+
+    // Floating flowers
+    const flowersBg = ['🌸','🌷','🌹','💐','🌼'];
+
+    for (let i = 0; i < 18; i++) {
+      const flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.innerHTML = flowersBg[Math.floor(Math.random() * flowersBg.length)];
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (Math.random() * 5 + 8) + 's';
+      flower.style.fontSize = (Math.random() * 1 + 1.2) + 'rem';
+      document.body.appendChild(flower);
     }
   </script>
 
